@@ -1,35 +1,45 @@
 import React from 'react';
-import { NavLink, Route,Routes } from 'react-router-dom';
+import { Route,Routes } from 'react-router-dom';
 import Inicio from './components/Inicio';
 import Blog from './components/Blog';
 import AcercaDe from './components/AcercaDe';
 import Error404 from './components/Error404';
+import Header from './components/Header';
+import styled from 'styled-components';
+import Post from './components/Post';
 
 const App = () => {
+  //``
   return (
-    <div>
-      <header>
-      <h1>Mi blog personal</h1>
-      <nav>
-        <NavLink to={'/'}>Inicio</NavLink>
-        <NavLink to={'/blog'}>Blog</NavLink>
-        <NavLink to={'/acerca'}>A cerca de</NavLink>
-      </nav>
-      </header>
+    <ContenedorPrincipal>
+    <Header/>
 
-      <main>
-
+      <Main>
       <Routes>
         <Route path='*' element={<Error404/>}/>
         <Route path='/' element={<Inicio/>}/>
         <Route path='/blog' element={<Blog/>}/>
+        <Route path='post/:id' element={<Post/>}/>
         <Route path='/acerca' element={<AcercaDe/>}/>
-
       </Routes>
+      </Main>
 
-      </main>
-    </div>
+    </ContenedorPrincipal>
     );
 }
  
+
+const ContenedorPrincipal=styled.div`
+    padding:40px;
+    width:90%;
+    max-width:700px;
+`;
+
+const Main=styled.main`
+  background:#FFF;
+  padding:40px;
+  border-radius:10px;
+  box-shadow:0px 0px 5px rgba(129,129,129,0.1);
+`;
+
 export default App;
